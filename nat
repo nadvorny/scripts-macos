@@ -1,0 +1,10 @@
+#!/bin/bash
+# bit-torrent port forwarding with mac os x
+killall -9 natd
+sleep 5
+# The following will forward 6881 to 6999 port to desktop computer located at 192.168.2.2
+# 192.168.1.100 => airport IP
+# 192.168.2.2 => Desktop client ip
+#  natd provides a Network Address Translation facility for use with divert(4) sockets under FreeBSD.
+# -------------------------------------------------------------------------------------------------
+/usr/sbin/natd -alias_address 192.168.1.100 -interface en1 -use_sockets -same_ports -unregistered_only -dynamic -clamp_mss -enable_natportmap -natportmap_interface en0 -redirect_port tcp 192.168.2.2:6881-6999 6881-6999 -l
